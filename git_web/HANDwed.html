@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Worathat Paenthong - Portfolio</title>
+  <!-- Google Font for elegant typography -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- Font Awesome for social media icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-..." crossorigin="anonymous" />
+  <style>
+    /* Basic Reset and Typography */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #000;
+      /* overall dark background */
+      color: #fff;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.3s ease, transform 0.2s ease;
+      /* enable smooth transition on hover */
+    }
+
+    a:hover {
+      transform: scale(1.05);
+      /* slight scale effect */
+      color: #eb6767;
+      /* highlight color on hover */
+    }
+
+    /* Sticky Navigation Bar */
+    nav {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      /* semi-transparent black backdrop */
+      backdrop-filter: blur(5px);
+      /* optional: blur behind nav (for modern browsers) */
+      padding: 0.5rem 1rem;
+      z-index: 1000;
+      /* ensure nav is on top */
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    nav ul li {
+      display: inline;
+    }
+
+    nav ul li a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 8px 4px;
+      /* lighter text for nav links */
+      color: #ddd;
+    }
+
+    nav ul li a:hover {
+      color: #fff;
+      transform: none;
+      /* override scale for nav links, just change color */
+    }
+
+    /* "Download CV" button style in nav */
+    .Download-CV {
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 8px 16px;
+      margin-left: 1rem;
+      background: #eb6767;
+      /* accent color */
+      color: #000;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .Download-CV:hover {
+      background: #c65b5b;
+      transform: scale(1.05);
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      padding: 4rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: left;
+      overflow: hidden;
+      /* The background image layer (using pseudo-element) */
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('486564218_3882429545339780_7412288605506403310_n.jpg') center center no-repeat;
+      background-size: cover;
+      filter: blur(8px);
+      /* blur the background image */
+      transform: scale(1.1);
+      /* slight scale-up for a subtle zoom effect */
+      z-index: -2;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      /* dark overlay to increase text contrast */
+      z-index: -1;
+    }
+
+    .hero-content {
+      display: flex;
+      flex-wrap: wrap;
+      /* allow content to wrap on smaller screens */
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      width: 100%;
+      z-index: 1;
+      /* place content above pseudo-elements */
+    }
+
+    .hero-text {
+      flex: 1 1 600px;
+      /* margin-right to space out from image on large screens */
+      margin-right: 2rem;
+    }
+
+    .hero-text h1 {
+      font-size: 2.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      opacity: 0;
+      /* start hidden for animation */
+      animation: fadeInUp 1s ease-out forwards;
+    }
+
+    .hero-text p {
+      font-size: 1.1rem;
+      font-weight: 300;
+      max-width: 600px;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeInUp 1s ease-out forwards;
+      animation-delay: 0.3s;
+    }
+
+    .social-icons {
+      opacity: 0;
+      animation: fadeInUp 1s ease-out forwards;
+      animation-delay: 0.6s;
+    }
+
+    .social-icons a {
+      display: inline-block;
+      color: #fff;
+      background: #333;
+      padding: 0.5rem;
+      margin-right: 1rem;
+      border-radius: 50%;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .social-icons a:hover {
+      background: #555;
+      transform: scale(1.1);
+    }
+
+    .social-icons i {
+      font-size: 1.5rem;
+      width: 1.5rem;
+      height: 1.5rem;
+      text-align: center;
+      margin-right: 0.20rem;
+      margin-top: 0.20rem;
+      margin-left: 0.25rem;
+      text-align: center;
+    }
+
+    .hero-image {
+      flex: 0 1 300px;
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .hero-image img {
+      width: 350px;
+      height: 350px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 50%;
+      opacity: 0;
+      animation: fadeInUp 1s ease-out forwards;
+      animation-delay: 0.5s;
+      transform: scaleX(-1);
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      /* spacing between items */
+    }
+
+    .nav-profile-pic img {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Sections (Features, Portfolio, etc.) */
+    section {
+      padding: 3rem 3rem;
+    }
+
+    section:nth-of-type(even) {
+      /* alternate background color for variety */
+      background: #111;
+    }
+
+    section h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    section h3 {
+      max-width: 800px;
+      margin: 1.5rem auto 0.5rem;
+      color: #fff;
+      font-size: 1.2rem;
+      font-weight: 400;
+    }
+
+    section p,
+    section ul {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1rem;
+      color: #ccc;
+    }
+
+    section ul {
+      list-style: disc;
+      padding-left: 1.2rem;
+    }
+
+    section ul li {
+      margin: 0.5rem 0;
+    }
+
+    /* Publication-specific styles */
+    #Publication ul li a.pub-link {
+      color: #fff;
+      font-weight: 600;
+      transition: color 0.3s ease, transform 0.2s ease;
+      display: inline-block;
+    }
+
+    #Publication ul li a.pub-link:hover {
+      color: #eb6767;
+      transform: translateY(-2px);
+      /* slight lift effect */
+    }
+
+    /* Footer/Contact */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: #000;
+      color: #777;
+      font-size: 0.9rem;
+    }
+
+    .highlight-name {
+      color: #f57979;
+    }
+
+    /* Keyframes for fade-in-up animation */
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .hero-content {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero-text {
+        margin-right: 0;
+      }
+
+      .hero-text h1 {
+        font-size: 2rem;
+      }
+
+      .hero-text p {
+        font-size: 1rem;
+      }
+
+      nav ul {
+        flex-direction: column;
+        background: rgba(0, 0, 0, 0.9);
+        position: absolute;
+        top: 100%;
+        right: 0;
+        padding: 1rem;
+        display: none;
+        /* hidden by default on mobile (could toggle via JS) */
+      }
+
+      nav ul.mobile-show {
+        display: flex;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="nav-left">
+      <div class="nav-profile-pic">
+        <a href="#home">
+          <img src="486094163_1744810076443042_5706635429069824184_n.jpg" alt="Worathat Paenthong">
+        </a>
+      </div>
+      <ul class="menu">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#Portfolio">Portfolio</a></li>
+        <li><a href="#Education">Education</a></li>
+        <li><a href="#Activities">Activities</a></li>
+        <li><a href="#Publication">Publication</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <a href="#" class="Download-CV">Download CV</a>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>Hi, I’m <span class="highlight-name">Worathat Paenthong</span>, <br>a Ph.D. Student at SOKENDAI.</h1>
+        <p>
+          <strong>I study energetic particle confinement in the Large Helical Device (LHD) using a newly developed
+            Imaging Neutral Particle Analyzer (INPA)</strong>, combining experiments and simulations to deepen our
+          understanding of fusion plasma behavior.
+        </p>
+        <div class="social-icons">
+          <!-- GitHub -->
+          <a href="https://github.com/HAND-cyber" target="_blank" rel="noopener" title="GitHub">
+            <i class="fab fa-github"></i>
+          </a>
+          <!-- LinkedIn -->
+          <a href="https://www.linkedin.com/in/worathat-paenthong-5994a3200/" target="_blank" rel="noopener"
+            title="LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <!-- RSS (หรือ Blog) -->
+          <a href="https://log.com/rss" target="_blank" rel="noopener" title="Blog RSS">
+            <i class="fas fa-rss"></i>
+          </a>
+          <!-- Email -->
+          <a href="mailto:paenthong.worathat@nifs.ac.jp" title="Send Email">
+            <i class="fas fa-envelope"></i>
+          </a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="486094163_1744810076443042_5706635429069824184_n.jpg" alt="Worathat Paenthong">
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Portfolio Section -->
+  <!-- Portfolio Section -->
+  <section id="Portfolio" style="text-align: center;">
+    <h2>Portfolio</h2>
+    <p>I am passionate about:</p>
+    <ul style="display: inline-block; text-align: left;">
+      <li>Python coding for data analysis and visualization</li>
+      <li>Fast neutron detectors and related diagnostics</li>
+      <li>Imaging Neutral Particle Analyzer (INPA) development</li>
+      <li>Machine learning and deep learning applications</li>
+    </ul>
+  </section>
+
+
+  <!-- Education Section -->
+  <section id="Education">
+    <h2>Education</h2>
+    <p>I have a strong academic background in physics and fusion science, with research experience spanning both
+      Thailand and Japan. Here’s a summary of my educational journey:</p>
+    <ul>
+      <li>
+        <strong>Ph.D. in Fusion Science</strong> – SOKENDAI, Japan (2023–Present)<br>
+        <span style="display:block; margin-left:1rem; color:#fac6c6;">
+          <em>Research Topic:</em> Focused on energetic particle confinement in the Large Helical Device (LHD) using
+          the newly developed Imaging Neutral Particle Analyzer (INPA).
+        </span>
+      </li>
+      <li>
+        <strong>M.Sc. in Physics</strong> – King Mongkut’s University of Technology Thonburi (KMUTT), Thailand
+        (2021–2023)<br>
+        <span style="display:block; margin-left:1rem; color:#fac6c6;">
+          <em>Research Topic:</em> Fast-ion orbit analysis in Thailand Tokamak-1.
+        </span>
+      </li>
+      <li>
+        <strong>B.Sc. in Applied Physics</strong> – King Mongkut’s University of Technology Thonburi (KMUTT), Thailand
+        (2017–2021)<br>
+        <span style="display:block; margin-left:1rem; color:#fac6c6;">
+          <em>Research Topic:</em> Multi-channel resonance spectroscopy for Volatile organic compounds (VOCs) optical
+          sensor array.
+        </span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- Activities Section -->
+  <section id="Activities">
+    <h2>Activities</h2>
+
+    <h3>Domestic conferences</h3>
+    <ul>
+      <li>第15回核融合エネルギー連合講演会 【青森県八戸市】 (2024年6月)</li>
+      <li>第41回 プラズマ・核融合学会 年会 【タワーホール船堀(東京都江戸川区)】 (2024年11月)</li>
+    </ul>
+
+    <h3>International conferences and Schools</h3>
+    <ul>
+      <li>The 25th Topical Conference on High Temperature Plasma Diagnostics, Asheville (April 2024)</li>
+      <li>The 24th International Stellarator/Heliotron Workshop, Hiroshima (September 2024)</li>
+      <li>The 13th ITER International School, Nagoya (December 2024)</li>
+      <li>The 14th ITER International School, Aix-en-Provence (to be held in June 2025)</li>
+      <li>The 51st EPS Conference on Plasma Physics, Vilnius (to be held in July 2025)</li>
+    </ul>
+  </section>
+
+
+  <!-- Publication Section -->
+  <section id="Publication">
+    <h2>Publication</h2>
+    <ul>
+      <li>
+        <a href="https://www.sciencedirect.com/science/article/abs/pii/S0920379622002484" class="pub-link"
+          target="_blank" rel="noopener">
+          Fast-ion orbit analysis in Thailand Tokamak-1
+        </a><br>
+        W. Paenthong, A. Wisitsorasak, S. Sangaroon … — <em>Fusion Engineering and Design</em>, 2022
+      </li>
+      <li>
+        <a href="https://www.sciencedirect.com/science/article/abs/pii/S0920379623000030" class="pub-link"
+          target="_blank" rel="noopener">
+          Feasibility study of neutral beam injection in Thailand Tokamak-1
+        </a><br>
+        S. Sangaroon, K. Ogawa, M. Isobe, A. Wisitsorasak … — <em>Fusion Engineering and Design</em>, 2023
+      </li>
+      <li>
+        <a href="https://doi.org/10.1063/5.0219385" class="pub-link" target="_blank" rel="noopener">
+          Design and initial results of the imaging neutral particle analyzer in large helical device
+        </a><br>
+        W. Paenthong, K. Ogawa, S. Sangaroon, X. D. Du, D. Liu … — <em>Review of Scientific Instruments</em>, 2024
+      </li>
+      <li>
+        <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5074979" class="pub-link" target="_blank"
+          rel="noopener">
+          Simulation of Neutral Beam Injection Towards Fast Ion Study in Thailand Tokamak-1
+        </a><br>
+        A. Wisitsorasak, K. Ogawa, S. Sangaroon, B. Chatthong … — Available at SSRN 5074979, 2024
+      </li>
+      <li>
+        <a href="https://doi.org/10.1063/5.0219460" class="pub-link" target="_blank" rel="noopener">
+          The initial measurement of a compact D–T neutron spectrometer based on a single-crystal chemical vapor
+          deposition diamond stack for fusion plasma diagnostic
+        </a><br>
+        L. Y. Liao, K. Ogawa, S. Sangaroon, W. Paenthong … — <em>Review of Scientific Instruments</em>, 2024
+      </li>
+    </ul>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>
+      For research inquiries, collaboration proposals, or detailed discussion of fusion‐plasma diagnostics, please email
+      me directly at
+      <a href="mailto:paenthong.worathat@nifs.ac.jp" style="color:#eb6767; text-decoration:underline;">
+        paenthong.worathat@nifs.ac.jp
+      </a>.
+    </p>
+    <p>
+      I am currently affiliated with the Fusion Science Program, SOKENDAI. My office
+      address is:
+      <br>
+      <strong>Fusion Science Program, NIFS</strong><br>
+      322‐6 Oroshi‐cho, Toki‐city, Gifu 509‐5292, Japan
+    </p>
+    <p>
+      You can also connect with me on professional networks:
+      <br>
+      <a href="https://orcid.org/0000-0002-0801-5106" target="_blank" rel="noopener">
+        ORCID
+      </a> |
+      <a href="https://www.researchgate.net/profile/Worathat-Paenthong-3?fbclid=PAQ0xDSwKvSVBleHRuA2FlbQIxMQABpx9MDeSNL9iX67e_CFn_0T5O6zezZMYA23AJ-ldhKkglWEYO07Qy8qapcbSU_aem_YqRPQftxaXIfo4z84V7JoQ"
+        target="_blank" rel="noopener">
+        ResearchGate
+      </a> |
+      <a href="https://scholar.google.com/citations?user=8Xv7L0kAAAAJ&hl=ja&oi=sra" target="_blank" rel="noopener">
+        Google Scholar
+      </a>
+    </p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 Worathat Paenthong. All rights reserved.
+  </footer>
+
+</body>
+
+</html>
